@@ -31,7 +31,7 @@ ADSL 방식에서는 회선의 길이가 길어지면 잡음에 영향을 더 �
 ### 전화국
 전화선을 한데 모아서 ISP까지 이어가는 어떠한 통신 시설? <br>
 
-### 셀
+### ATM 셀
 ATM (Asynchronus Transfer Mode) 이라는 과거의 통신 기술에서 사용하는 데이터 단위이다. 컴퓨터의 통신에서는 적합하지 않다고 한다. <br>
 ADSL 모뎀에서 패킷을 셀로 분할한다. <br>
 패킷을 여러개의 조각으로 나눈 후 작은 헤더를 붙인 것이 셀이다. <br>
@@ -43,7 +43,7 @@ ADSL 방식에서 테스트 신호를 주고받으며 잡음에 안정적인 주
 ### ADSL 모뎀
 패킷을 ATM 셀로 분할하여 전기신호로 변환하여 송출해준다. <br>
 
-### DSLAM
+### DSLAM (Digital Subscriber Line Access Multiplexer)
 전화국쪽에서 ADSL 모뎀에서 온 신호를 수신하는 ADSL모뎀 묶음이고 그래서 이름도 DSL Access Multiplexer 이다. <br>
 
 ### BAS (Broadband Access Server)

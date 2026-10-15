@@ -42,6 +42,7 @@ ExitThread();
 _beginthreadex(); -> crt힙에 ptd할당 및 CreatThread() 호출
     |
 CreateThread(); 쓰레드 컨텍스트 및 커널오브젝트 생성
+이때 사용자가 지정한 쓰레드함수가 아닌 _threadstartex()를 쓰레드함수로 지정하여 생성.
 
 ============================================
 
@@ -50,7 +51,7 @@ RtlUserThreadStart();
     |
 _threadstartex(); -> ptd를 본인의 tls와 이어줌
     |
-_callthreadstartex(); -> 실제 쓰레드함수 호출
+_callthreadstartex(); -> ptd에 저장한 실제 쓰레드함수 호출
     |
 ThreadFunc();
     |

@@ -3,12 +3,12 @@
 * 한 프로세스에 여러개 존재가능
 * 프로세스의 가상주소공간 내부에서 독립적인 본인의 스택을 가지고 나머지는 다른 스레드와 공유
 
-# 스레드 커널오브젝트
-* 운영체제가 내부적으로 사용하는 스레드 관련 데이터 구조체
+# 쓰레드 커널오브젝트
+* 운영체제가 내부적으로 사용하는 쓰레드 관련 데이터 구조체
 * cpu에 올라갔을때 필요한 정보 = 컨텍스트를 가지고있음. sp, ip, bp등 여러 레지스터 값
 * 사용카운트, 정지카운트, 종료코드, 시그널 상태
 * 종료코드는 실행중일 때에는 STILL_ACTIVE 상수값. 종료되면 스레드함수의 리턴값
-* 스레드 생성 시 ip레지스터 값에 RtlUserThreadStart() 함수를 가리키고 있음
+* 쓰레드 생성 시 ip레지스터 값에 RtlUserThreadStart() 함수를 가리키고 있음
 
 # CreateThread() WinAPI 제공
 * 운영체제 내부적으로 사용하는 쓰레드 커널오브젝트를 생성
@@ -17,12 +17,12 @@
 
 ### CreateThread() 로 쓰레드를 생성한 경우
 ```text
-스레드를 생성할 때
+쓰레드를 생성할 때
 CreateThread(); -> 쓰레드 컨텍스트 및 커널오브젝트 생성
 
 =========≈===============================
 
-스레드가 스케쥴링 되어 cpu에서 실행될 때
+쓰레드가 스케쥴링 되어 cpu에서 실행될 때
 RtlUserThreadStart();
     |
 ThreadFunc(void* param); -> ptd 개념이 없음
@@ -38,19 +38,19 @@ ExitThread();
 
 ### _beginthreadex() 로 쓰레드를 생성한 경우
 ```text
-스레드를 생성할 때
+쓰레드를 생성할 때
 _beginthreadex(); -> crt힙에 ptd할당 및 CreatThread() 호출
     |
 CreateThread(); 쓰레드 컨텍스트 및 커널오브젝트 생성
 
 ============================================
 
-스레드가 스케쥴링 되어 cpu에서 실행될 때
+쓰레드가 스케쥴링 되어 cpu에서 실행될 때
 RtlUserThreadStart();
     |
 _threadstartex(); -> ptd를 본인의 tls와 이어줌
     |
-_callthreadstartex(); -> 실제 스레드함수 호출
+_callthreadstartex(); -> 실제 쓰레드함수 호출
     |
 ThreadFunc();
     |
